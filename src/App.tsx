@@ -1,16 +1,21 @@
-import { useState } from "react";
+// import { useState } from "react";
+import Input from "./components/Input";
+import Button from "./components/Button";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Vite + React</h1>
-        <h2>Count: {count}</h2>
-        <button onClick={() => setCount(count + 1)}>Increment</button>
-      </header>
-    </div>
+    <main>
+      <Input id="name" label="Your name" type="text" />
+      <Input id="age" label="Your age" type="number" min={1} />
+      <p>
+        <Button el="button">A button</Button>
+      </p>
+      <p>
+        <Button el="anchor" href="https://example.com">
+          A link
+        </Button>
+      </p>
+    </main>
   );
 }
 
