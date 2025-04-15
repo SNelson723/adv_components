@@ -1,18 +1,21 @@
-import { type ComponentPropsWithoutRef } from "react";
+import { forwardRef, type ComponentPropsWithoutRef } from "react";
 
 type InputProps = {
   label: string;
   id: string;
-  // Retrieves the props an 'input' element accepts => WithoutRef means it doesn't take a ref
 } & ComponentPropsWithoutRef<"input">;
 
-const Input = ({ label, id, ...props }: InputProps) => {
-  return (
-    <p>
-      <label htmlFor={id}>{label}</label>
-      <input id={id} {...props} />
-    </p>
-  );
-};
+// first type parameter is the type of the ref, second is the type of the props
+// forwardRef is a higher order component that takes a component and returns a new component with a ref attached to it
+const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ label, id, ...props }, ref) => {
+    return (
+      <p>
+        <label htmlFor={id}>{label}</label>
+        <input ref={ref} id={id} name={id} {...props} />
+      </p>
+    );
+  }
+);
 
 export default Input;
